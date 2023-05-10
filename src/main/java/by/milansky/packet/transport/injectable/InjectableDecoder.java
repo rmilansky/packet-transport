@@ -6,7 +6,6 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import lombok.NonNull;
-import org.bukkit.Bukkit;
 
 import java.util.List;
 
@@ -27,8 +26,6 @@ public final class InjectableDecoder extends Injectable {
                 for (PacketListener listener : manager.getListeners()) {
                     try {
                         listener.accept(packet);
-
-                        Bukkit.broadcastMessage("accepted " + listener);
                     } catch (ClassCastException ignored) {
                         // do not match
                     }
