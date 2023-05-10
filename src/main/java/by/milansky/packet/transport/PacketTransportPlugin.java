@@ -4,9 +4,11 @@ import by.milansky.packet.transport.injectable.InjectableDecoder;
 import by.milansky.packet.transport.injectable.InjectableEncoder;
 import by.milansky.packet.transport.listener.PacketTransportListener;
 import by.milansky.packet.transport.listener.PacketTransportPluginListener;
+import by.milansky.packet.transport.utility.PacketTransportUtility;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+import lombok.val;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
@@ -32,4 +34,14 @@ public final class PacketTransportPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PacketTransportPluginListener(listenerManager), this);
     }
 
+    @Override
+    public void onDisable() {
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            val channel = PacketTransportUtility.getChannel(player);
+
+            channel.pipeline().remove("TransportEncoder");
+            channel.pipeline().remove("TransportDecoder");
+        });
+    }
+    
 }

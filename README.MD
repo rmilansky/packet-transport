@@ -10,6 +10,7 @@ Using example:
 ```java
 import lombok.NonNull;
 import by.milansky.packet.transport.PacketListener;
+import by.milansky.packet.transport.utility.PacketTransportUtility;
 import net.minecraft.server.v1_8_R3.PacketPlayInChat;
 
 public final class TestListener extends PacketListener<PacketPlayInChat> {
@@ -17,12 +18,12 @@ public final class TestListener extends PacketListener<PacketPlayInChat> {
     public void accept(@NonNull PacketPlayInChat packet) {
         // reading message sent by client from packet
         String message = getValue(packet, "a");
-        
+
         // return, cuz it is a comman
         if (message.startsWith("/")) return;
-        
+
         // setting message in packet by reflection
-        setValue(packet, "a", "https://github.com/rmilansky/packet-transport");
+        PacketTransportUtility.setValue(packet, "a", "https://github.com/rmilansky/packet-transport");
     }
 }
 

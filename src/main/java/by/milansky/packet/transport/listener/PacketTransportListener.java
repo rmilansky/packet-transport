@@ -1,13 +1,11 @@
 package by.milansky.packet.transport.listener;
 
-import by.milansky.packet.transport.PacketListener;
 import by.milansky.packet.transport.injectable.Injectable;
-import io.netty.channel.Channel;
+import by.milansky.packet.transport.utility.PacketTransportUtility;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import lombok.val;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -24,13 +22,9 @@ public final class PacketTransportListener implements Listener {
         this.injectables = injectables;
     }
 
-    private static Channel getChannel(@NonNull Player player) {
-        return PacketListener.getValue(PacketListener.getValue(PacketListener.getValue(PacketListener.invoke(player, "getHandle"), "playerConnection"), "networkManager"), "channel");
-    }
-
     @EventHandler
     private void onJoin(@NonNull PlayerJoinEvent event) {
-        for (val injectable : injectables) injectable.inject(getChannel(event.getPlayer()));
+        for (val injectable : injectables) injectable.inject(PacketTransportUtility.getChannel(event.getPlayer()));
     }
 
 }
