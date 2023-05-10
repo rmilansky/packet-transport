@@ -5,6 +5,7 @@ import by.milansky.packet.transport.injectable.InjectableEncoder;
 import by.milansky.packet.transport.listener.PacketTransportListener;
 import by.milansky.packet.transport.listener.PacketTransportPluginListener;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,7 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public final class PacketTransportPlugin extends JavaPlugin {
 
+    @Getter
     PacketListenerManager listenerManager = new PacketListenerManager();
 
     @Override
