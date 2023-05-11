@@ -1,5 +1,14 @@
 # packet-transport
+
 A lightweight bukkit library that allows to change incoming/outcoming packets in runtime.
+
+## SOCIAL
+
+<hr>
+<ul>
+<li><a href="https://discord.gg/S6CV7e2CYK">Discord Server</a></li>
+</ul>
+
 ## HOW TO USE?
 
 To start with Packet Transport, you should create class inherited from PacketListener<T>, <br>
@@ -28,10 +37,12 @@ public final class TestListener extends PacketListener<PacketPlayInChat> {
 }
 
 ```
+
 This code will handle all packets sent by client with type "PacketPlayInChat" and change message in it.<br>
 But you need to register this listener in the main class of your plugin:
 
 ```java
-PacketTransportPlugin.getPlugin(PacketTransportPlugin.class).getListenerManager().register(this, new TestListener());
+PacketTransportPlugin.getPlugin(PacketTransportPlugin.class).getListenerManager().register(this,new TestListener());
 ```
+
 ![Chat](https://i.imgur.com/rXEraSV.png)
