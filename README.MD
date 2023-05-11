@@ -42,7 +42,7 @@ This code will handle all packets sent by client with type "PacketPlayInChat" an
 But you need to register this listener in the main class of your plugin:
 
 ```java
-PacketTransportPlugin.getPlugin(PacketTransportPlugin.class).getListenerManager().register(this,new TestListener());
+PacketTransportPlugin.getPlugin(PacketTransportPlugin.class).getListenerManager().register(this, new TestListener());
 ```
 
 ![Chat](https://i.imgur.com/rXEraSV.png)
