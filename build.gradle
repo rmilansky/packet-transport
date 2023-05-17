@@ -37,7 +37,7 @@ publishing {
     repositories {
         maven {
             name = "GITHUB"
-            url = "https://maven.pkg.github.com/rmilansky/google-translate-java"
+            url = "https://maven.pkg.github.com/rmilansky/packet-transport"
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
