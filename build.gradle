@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = 'by.milansky'
@@ -20,4 +21,27 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = project.name
+            version = version
+
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GITHUB"
+            url = "https://maven.pkg.github.com/rmilansky/google-translate-java"
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+    }
 }
